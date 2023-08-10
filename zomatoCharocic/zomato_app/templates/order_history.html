@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order History</title>
+  <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-PRrgQVJ8NNHGieOA1grGdCTIt4h21CzJs6SnWH4YMQ6G5F5+IEzOHz67L4SQaF0o" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h2>Order History</h2>
+    <table class="table table-success table-striped-columns">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Order ID</th>
+<!--           <th>Dish Name</th>-->
+          <th>Customer Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ order.order_id }}</td>
+<!--          <td>-->
+<!--            {% for order_dish in order.orderdish_set.all %}-->
+<!--              {{ order_dish.dish.dish_name }}<br>-->
+<!--            {% endfor %}-->
+<!--          </td>-->
+          <td>{{ order.customer.customer_name }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <a href="{% url 'view_customer_order_history' order.customer.id %}" class="btn btn-primary btn-sm">View Customer Orders</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- Link to Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
